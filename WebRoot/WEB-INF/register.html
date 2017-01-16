@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="layui/css/layui.css" media="all">
+<base href="<%=basePath%>">
+
+<title>Diary · Register</title>
+<meta charset="utf-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+
+<script src="layui/layui.js" charset="utf-8"></script>   
+<script>
+	layui.use('form', function() {
+		var form = layui.form();
+		form.on('submit(login)', function(data) {
+			var usernameaux = document.getElementById("usernameaux");
+			var repeataux = document.getElementById("repeataux");
+			var patt = /^[_a-zA-Z]+[a-zA-Z0-9]/i;
+			if(!patt.test(data.field.username)) {
+				usernameaux.style.color = "red";
+				usernameaux.innerHTML = "用户名格式不合法";
+				return false;
+			} else {
+				usernameaux.style.color = "#5FB878";
+				usernameaux.innerHTML = "pass";
+			}
+		
+			if(data.field.repeatpwd != data.field.pwd) {				
+				repeataux.style.color = "red";
+				repeataux.innerHTML = "两次密码不一致";
+				return false;
+			} else {
+				repeataux.style.color = "#5FB878";
+				repeataux.innerHTML = "";
+			}
+			return true;			
+		});
+	});
+</script>
+
+<style>
+.register{
+	margin-left:30%;
+	margin-right:30%;
+	margin-top:10%;
+}
+</style>
+</head>
+
+<body>
+	<div class="register">
+		<form class="layui-form" method="post" action="register">
+			<div class="layui-form-item">
+				<label class="layui-form-label">用户名</label>
+				<div class="layui-input-inline">
+					<input type="text" name="username" required lay-verify="required"
+						placeholder="请输入用户名" autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-input-inline">
+					<div id="usernameaux" class="layui-form-mid layui-word-aux"></div>
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">密码</label>
+				<div class="layui-input-inline">
+				
+					<input type="password" name="pwd" required
+						lay-verify="required" placeholder="请输入密码" autocomplete="off"
+						class="layui-input">
+				</div>
+				<div class="layui-input-inline">
+					<div id="pwdaux" class="layui-form-mid layui-word-aux"></div>
+				</div>
+				
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">重复密码</label>
+				<div class="layui-input-inline">
+					<input type="password" name="repeatpwd" required
+						lay-verify="required" placeholder="请重复密码" autocomplete="off"
+						class="layui-input">
+				</div>
+				<div class="layui-input-inline">
+					<div id="repeataux" class="layui-form-mid layui-word-aux"></div>
+				</div>
+			</div>
+			
+			<div class="layui-input-block">
+				<a href="register"><button class="layui-btn" lay-submit lay-filter="login">注册</button></a>
+			</div>
+		</form>
+
+	</div>
+</body>
+</html>
