@@ -1,43 +1,50 @@
+﻿<%@page import="cn.knife037.bean.ArticleBean"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 
-
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Home</title>
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+<meta charset="utf-8">
+<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+	form{
+		width:60%;
+		margin-left:20%;
+		margin-top:1%;
+	}
+	.form-element{
+		margin-top:1%;
+	}
+	.content{
+		width:60%;
+		margin-left:20%;
+		margin-top:1%;
+	}
+</style>
+
+<title>Diary · Write</title>
 </head>
-
-
 <body>
-
-<ul class="layui-nav layui-nav-tree layui-nav-side">
-  
-  <li class="layui-nav-item"><a href="article">已写</a></li>
-  <li class="layui-nav-item"><a href="write">新建</a></li>
-  <li class="layui-nav-item"><a href="javascript:;">我的</a></li>
-  <li class="layui-nav-item"><a href="quit">退出</a></li>
-  
-</ul>
-
-<div style="margin-left:20%;margin-top:1%;width:70%">
-	<blockquote class="layui-elem-quote layui-quote-nm" style="font-size:20px">${article.title}</blockquote>
-	<hr>
-	${article.cont}
+<div class="container">
+	<ul class="nav nav-tabs">
+		<li><a href="index">我的</a></li>
+		<li class="active"><a href="article">已写</a></li>
+		<li><a href="write">新建</a></li>
+		<li><a href="quit">退出</a></li>
+	</ul>
+</div>
+<div class="content">
+<blockquote>
+	<h1>${article.title}</h1>
+</blockquote>
+${article.cont}
 </div>
 
-<script src="layui/layui.js" charset="utf-8"></script>   
+<script src="dist/js/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
 <script>
-layui.use(['element'], function(){
-		var element = layui.element();});
+
 </script>
+
 </body>
 </html>
