@@ -1,2 +1,2 @@
 # Diary
-版本更新没有跟上。。。。最新版已经支持Markdown，采用Bootstrap框架
+采用Bootstrap前段框架，后端纯Servlet + JSP，练手
