@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.markdown4j.Markdown4jProcessor;
+
 import cn.knife037.bean.ArticleBean;
 
 public class ViewArticleServlet extends HttpServlet {
@@ -84,7 +86,7 @@ public class ViewArticleServlet extends HttpServlet {
 			rs = DbUtil.executeQuery(pstmt);
 			rs.next();
 			String title = rs.getString("title");
-			String cont = transformHTML(rs.getString("cont"));
+			String cont = new Markdown4jProcessor().process(rs.getString("cont"));
 			Date date = rs.getDate("date");
 			ArticleBean article = new ArticleBean(articleID, title, cont, date);
 			
@@ -97,15 +99,6 @@ public class ViewArticleServlet extends HttpServlet {
 			DbUtil.close(pstmt);
 			DbUtil.close(rs);
 		}
-		
-		
-	}
-
-	private String transformHTML(String txt) {
-		String html = txt;
-		html = "<p>" + txt.replace("\r\n", "</p><br>\r\n<p>");
-		html = html.replace(" ", "&nbsp;");
-		return html;
 	}
 	
 	/**
