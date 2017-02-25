@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.markdown4j.Markdown4jProcessor;
-
 public class WriteServlet extends HttpServlet {
 
 	/**
@@ -85,9 +83,6 @@ public class WriteServlet extends HttpServlet {
 		PreparedStatement pstmt = DbUtil.preparedStatement(conn, sql);
 		try {
 			conn.setAutoCommit(false);
-			
-			cont = new Markdown4jProcessor().process(cont);
-			
 			pstmt.setString(1, username);
 			rs = DbUtil.executeQuery(pstmt);
 			rs.next();
